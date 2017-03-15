@@ -1,0 +1,33 @@
+version: '3'
+services:
+
+  redis:
+    image: redis:latest
+    container_name: redis
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    ports:
+     - "3306:3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=flotz
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=sf_app
+
+  php-fpm:
+    image: php:7-fpm
+    container_name: php
+    volumes:
+      - ./sf-app:/srv/sf-app
+      - ./php/sf-app.ini:/usr/local/etc/php/conf.d/sf-app.ini
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./sf-app:/srv/sf-app
+      - ./nginx/vhost.conf:/etc/nginx/conf.d/sf-app.conf
