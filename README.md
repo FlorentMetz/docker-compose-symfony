@@ -6,6 +6,7 @@ This repository includes:
 - [mysql:5.7](https://hub.docker.com/_/mysql/)
 - [PHP:7](https://hub.docker.com/_/php/)
 - [nginx:latest](https://hub.docker.com/_/nginx/)
+- [composer/composer:alpine](https://hub.docker.com/r/composer/composer/)
 
 ### Setup
 
@@ -18,6 +19,12 @@ docker-composer up -d
 ```
 
 The 2 above commands will pull the right docker images, create the containers from them and run them in a detached process.
+
+To install your vendor, simply run `composer install` from your composer container:
+
+```
+docker-compose run composer install
+```
 
 ```
 docker logs -f php|nginx

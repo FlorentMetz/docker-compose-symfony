@@ -23,6 +23,13 @@ services:
       - ./sf-app:/srv/sf-app
       - ./php/sf-app.ini:/usr/local/etc/php/conf.d/sf-app.ini
 
+  composer:
+    image: composer/composer:alpine
+    container_name: composer
+    working_dir: /srv/sf-app
+    volumes:
+      - ./sf-app:/srv/sf-app
+
   nginx:
     image: nginx:latest
     container_name: nginx
