@@ -26,11 +26,12 @@ To install your vendor, simply run `composer install` from your composer contain
 docker-compose run composer install
 ```
 
+To look up the logs:
+
 ```
 docker logs -f php|nginx
 ```
 
-to look up the logs.
 
 The nginx [vhost](nginx/vhost.conf) is setup to use [sf-app.local:8080](http://sf-app.local:8080) so don't forget to update your `/etc/hosts` to include
 
